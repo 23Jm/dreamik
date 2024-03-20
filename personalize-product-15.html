@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><img src="./image/logo.png" alt="logo">Dreamik AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+     <style>
+ @import url('https://fonts.googleapis.com/css2?family=Dynalight&family=Hurricane&display=swap');
+
+  #nameSlipContainer {
+    background-image: url('path/to/background-image.jpg'); 
+    background-size: cover;
+    background-position: center; 
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+     flex-direction: column; /* Change to column */
+    align-items: center; /* Align items to center */
+  }
+
+ .hurricane-regular {
+  font-family: "Hurricane", cursive;
+  font-weight: 600;
+  font-style: normal;
+}
+
+  #uploadedImage {
+      position: absolute;
+      top: 150px;
+      left: 70px;
+      width: 200px;
+      height: 220px;
+      border-radius: 5px;
+      object-fit: cover;
+      border: 2px solid rgb(245, 148, 36);
+  }
+  .name-slip {
+   background-image: url(image/DreamikAILabel-Rectangle-1080x1920px-HD-WhiteBK-BatmintonTheme-Type1-ImageLeft.png);
+  background-position: center;
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  width: 1080px; /* Adjust width to match input-groups */
+  height: 600px;
+  object-fit: contain;
+  padding: 20px;
+  margin: 50px;
+  }
+  .input-groups{
+    width: 30%;
+    margin-top: 60px;
+    padding: 15px;
+    height: 500px;
+    background-color: #fff;
+    border: 1px dashed;
+    box-shadow: 0 0 0 2px rgba(247, 246, 246, 0.8);
+    text-align: center;
+    flex-direction: column; /* Change to column */
+    align-items: center; /* Align items to center */
+  }
+  .input-groups button{
+    margin: 5px;
+  }
+  #nameSlipContainer{
+    display: flex;
+    align-items: center;
+  }
+  #studentName{
+    position: absolute;
+    top: 120px;
+    left: 330px;
+    font-size: 50px;
+    /* font-family:; */
+    font-weight:bold;
+    color: rgb(56, 55, 55);
+    min-width: 400px;
+    text-transform: capitalize;
+  }
+  #studentClass{
+    position: absolute;
+    top: 180px;
+    left: 330px;
+    font-size: 50px;
+    /* font-family: cursive; */
+    font-weight:bold;
+    color: rgb(56, 55, 55);
+     min-width: 600px;
+  }
+  #studentSection{
+    position: absolute;
+     top: 240px;
+    left: 330px;
+    font-size: 50px;
+    /* font-family: cursive; */
+    font-weight:bold;
+    color: rgb(56, 55, 55);
+     min-width: 600px;
+  }
+  #schoolName{
+    position: absolute;
+    top: 300px;
+    left: 330px;
+    font-size: 50px;
+    /* font-family:cursive; */
+    font-weight:bold;
+    color: rgb(56, 55, 55);
+    text-transform: capitalize;
+    min-width: 600px;
+  }
+
+  #inputUploadImage{
+    display: none;
+  }
+  label{
+    margin-bottom: 30px;
+    border: 1px dashed #a19d9d;
+    box-shadow: 0 0 0 2px rgba(247, 246, 246, 0.8);
+    text-align: center;
+    color:#a8a4a4;
+    padding: 10px;
+    display: block;
+    margin-top: 10px;
+  }
+  button {
+  background-color: #ece9e9;
+  border: none;
+  padding: 8px 10px;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #636262;
+}
+
+input{
+   display: block;
+   width: 100%;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   background-color: #fff;
+   border: 0;
+   box-shadow: 0 0 0 2px rgba(220, 217, 217, 0.8);
+   border: 1px dashed #878383;
+   padding: 10px 3px;
+}
+input:focus{
+    outline: none;
+}
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Adjust as needed */
+  align-items: flex-start; /* Adjust as needed */
+}
+   </style>
+
+  </head>
+<body>
+     <nav id="header">
+        <a href="#" class="logo-section"><img src="./image/logo.png" alt="logo" class="logo"><h2>DreamikAI</h2></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="customize.html" class="active">Customize</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section id="Personalize" class="section-p1">
+      <div class="container">
+          <div id="nameSlipContainer">
+          <!-- Default content for the name slip -->
+          <div class="name-slip" id="nameSlipContent">
+            <!-- Text placeholders -->
+            <p id="studentName" class="hurricane-regular"></p>
+            <p id="studentClass"class="hurricane-regular"></p>
+            <p id="studentSection"class="hurricane-regular"></p>
+            <p id="schoolName"class="hurricane-regular"></p>
+            <!-- Image placeholder -->
+            <img id="uploadedImage">
+          </div>
+         </div>
+          <div class="input-groups section-p1 section-m1">
+            <!-- Inputs for dynamic values -->
+          <label for="inputUploadImage">
+            upload image
+          <input type="file" id="inputUploadImage" placeholder="upload image">
+          </label> <br>
+            <button id="deleteButton"><i class="fa-solid fa-trash"></i></button>
+            <button id="zoomInButton"><i class="fa fa-search-plus" aria-hidden="true"></i></i></button>
+            <button id="zoomOutButton"><i class="fa fa-search-minus" aria-hidden="true"></i></button>
+            <button id="rotateLeftButton"><i class="fa-solid fa-rotate-left"></i></button>
+            <button id="rotateRightButton"><i class="fa-solid fa-rotate-right"></i></button>
+            <button id="flipHorizontalButton"><i class="fas fa-arrows-alt-h"></i></button>
+            <button id="flipVerticalButton"><i class="fas fa-arrows-alt-v"></i></button>
+          <input type="text" id="inputStudentName" placeholder="Enter student name">
+          <input type="text" id="inputStudentClass" placeholder="Enter student class">
+          <input type="text" id="inputStudentSection" placeholder="Enter student section">
+          <input type="text" id="inputSchoolName" placeholder="Enter school name"> 
+
+          <!-- Button to generate and download the name slip -->
+          <button onclick="generateAndDownloadNameSlip()">Generate & Download Name Slip</button>
+          </div>
+      </div>
+    </section>
+    <section id="pagination" class="section-p1 back">
+       <a href="product1.html"><i class="fas fa-long-arrow-alt-right"></i>  Go Back </a>
+    </section>
+    <section id="newsletter" class="section-p1 section-m1">
+       <div class="newstext">
+         <h3>Sign Up For Newsletters</h3>
+         <p>Get E-mail updates about our latest shop and <span>special offers</span>.</p>
+       </div>
+       <div class="form">
+        <input type="text" placeholder="Your email address">
+        <button>Sign Up</button>
+       </div>
+    </section>
+    <footer class="section-p1">
+       <div class="col">
+         <a href="#" class="logo-section"><img src="./image/logo.png" alt="logo" class="logo"><h2>DreamikAI</h2></a>
+         <p><strong>Address: </strong>
+            MURVEN Infotech Design Solutions LLP <br>
+            715-A, 7th Floor, Spencer Plaza,<br>
+            Suite No.548, Mount Road, Anna Salai, <br>
+            Chennai - 600 002, Tamil Nadu, India</p>
+             <p><strong>General Inquiries: </strong>+91-44-28505188</p>
+             <p><strong>Email: </strong>murven.design@gmail.com</p>
+              <p><strong>GST: </strong>33ABPFM6846A1Z8</p>
+              <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icons">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest-p"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+              </div>
+       </div>
+       <div class="col">
+        <h3>Menu</h3>
+        <a href="#">Dreamik AI</a>
+        <a href="#">Privacy Policy</a>
+       <a href="#">Terms & Conditions</a>
+       <a href="#">Return and Refund</a>
+       <a href="#">About Us</a>
+       <a href="#">Contact Us</a>
+       </div>
+       <div class="col">
+        <h3>My Account</h3>
+        <a href="#">Sign In</a>
+        <a href="#">View Cart</a>
+       <a href="#">My Wishlist</a>
+       <a href="#">Track My Order</a>
+       <a href="#">Help</a>
+       </div>
+       <div class="col install">
+        <h3>Install</h3>
+         <p>From Google Play</p>
+         <button>Get it on
+            <br><i class="fa-brands fa-google-play" style="color:red;"></i>Google Play
+        </button>
+        <p>Secured Payment Gateways</p>
+        <ul>
+            <li>Visa</li>
+            <li>Mastercard</li>
+            <li>Maestro</li>
+            <li>Gpay</li>
+        </ul>
+       </div>
+    </footer>
+    <footer class="f-2">
+        <p>© 2023 by Dreamik AI. Created by Sanads Digital</p>
+    </footer>
+    <script>
+       document.addEventListener("DOMContentLoaded", function () {
+  const uploadedImage = document.getElementById("uploadedImage");
+  const deleteButton = document.getElementById("deleteButton");
+
+deleteButton.addEventListener("click", function () {
+    uploadedImage.src = " ";
+  });
+
+  const zoomInButton = document.getElementById("zoomInButton");
+  zoomInButton.addEventListener("click", function () {
+    uploadedImage.style.transform += "scale(1.1)";
+  });
+
+  const zoomOutButton = document.getElementById("zoomOutButton");
+  zoomOutButton.addEventListener("click", function () {
+    uploadedImage.style.transform = "scale(0.8)";
+  });
+
+  const rotateLeftButton = document.getElementById("rotateLeftButton");
+  rotateLeftButton.addEventListener("click", function () {
+    uploadedImage.style.transform += "rotate(-90deg)";
+  });
+
+  const rotateRightButton = document.getElementById("rotateRightButton");
+  rotateRightButton.addEventListener("click", function () {
+    uploadedImage.style.transform += "rotate(90deg)";
+  });
+
+  const flipHorizontalButton = document.getElementById("flipHorizontalButton");
+  flipHorizontalButton.addEventListener("click", function () {
+    uploadedImage.style.transform += "scaleX(-1)";
+  });
+
+  const flipVerticalButton = document.getElementById("flipVerticalButton");
+  flipVerticalButton.addEventListener("click", function () {
+    uploadedImage.style.transform += "scaleY(-1)";
+  });
+
+});
+
+
+ // Function to generate and download the name slip
+function generateAndDownloadNameSlip() {
+  // Get input values
+  const studentName = document.getElementById('inputStudentName').value;
+  const studentClass = document.getElementById('inputStudentClass').value;
+  const studentSection = document.getElementById('inputStudentSection').value;
+  const schoolName = document.getElementById('inputSchoolName').value;
+  const uploadedImage = document.getElementById('inputUploadImage').files[0];
+
+  // Create a FileReader object to read the uploaded image
+  const reader = new FileReader();
+  reader.onload = function(event) {
+    const uploadedImageSrc = event.target.result;
+
+    // Update name slip content with dynamic values
+    updateNameSlip(studentName, studentClass, studentSection, schoolName, uploadedImageSrc);
+
+    // Download the name slip as an image
+    downloadNameSlip();
+  };
+  // Read the uploaded image as data URL
+  reader.readAsDataURL(uploadedImage);
+}
+
+// Function to update the name slip content with dynamic text and image
+function updateNameSlip(studentName, studentClass, studentSection, schoolName, uploadedImageSrc) {
+  const nameSlipContent = document.getElementById('nameSlipContent');
+  // Update text content
+  document.getElementById('studentName').textContent = studentName;
+  document.getElementById('studentClass').textContent = studentClass;
+  document.getElementById('studentSection').textContent = studentSection;
+  document.getElementById('schoolName').textContent = schoolName;
+
+  // Update image source
+  document.getElementById('uploadedImage').src = uploadedImageSrc;
+}
+
+// Function to download the name slip as an image
+function downloadNameSlip() {
+  // Capture the name slip container using html2canvas
+  html2canvas(document.getElementById('nameSlipContainer')).then(canvas => {
+    // Convert the canvas to a data URL
+    const dataURL = canvas.toDataURL('image/png');
+    // Create a link element to download the image
+    const link = document.createElement('a');
+    link.href = dataURL;
+    link.download = 'name_slip.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+  // After generating and downloading the image
+sessionStorage.setItem('imageData', imageData); // Store the image data in sessionStorage
+window.location.href = '/addToCart1.html'; // Redirect to the "Add to Cart" page
+}
+
+// Get references to the input elements
+const inputStudentName = document.getElementById('inputStudentName');
+const inputStudentClass = document.getElementById('inputStudentClass');
+const inputStudentSection = document.getElementById('inputStudentSection');
+const inputSchoolName = document.getElementById('inputSchoolName');
+const inputUploadImage = document.getElementById('inputUploadImage');
+
+// Add event listeners to update text content dynamically
+inputStudentName.addEventListener('input', function() {
+  document.getElementById('studentName').textContent = inputStudentName.value;
+});
+
+inputStudentClass.addEventListener('input', function() {
+  document.getElementById('studentClass').textContent = inputStudentClass.value;
+});
+
+inputStudentSection.addEventListener('input', function() {
+  document.getElementById('studentSection').textContent = inputStudentSection.value;
+});
+
+inputSchoolName.addEventListener('input', function() {
+  document.getElementById('schoolName').textContent = inputSchoolName.value;
+});
+
+// Add event listener to reflect uploaded image
+inputUploadImage.addEventListener('change', function(event) {
+  const uploadedImage = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function(event) {
+    const uploadedImageSrc = event.target.result;
+    document.getElementById('uploadedImage').src = uploadedImageSrc;
+  };
+
+  reader.readAsDataURL(uploadedImage);
+});
+
+    </script>
+</body>
+</html>
