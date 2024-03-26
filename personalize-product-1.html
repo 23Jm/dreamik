@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
- @import url('https://fonts.googleapis.com/css2?family=Dynalight&family=Hurricane&display=swap');
-
   #nameSlipContainer {
     background-image: url('path/to/background-image.jpg'); 
     background-size: cover;
@@ -21,12 +19,6 @@
      flex-direction: column; /* Change to column */
     align-items: center; /* Align items to center */
   }
-
- .hurricane-regular {
-  font-family:Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  font-style: normal;
-}
 
   #uploadedImage {
       position: absolute;
@@ -53,7 +45,7 @@
     width: 30%;
     margin-top: 60px;
     padding: 15px;
-    height: 500px;
+    height: 550px;
     background-color: #fff;
     border: 1px dashed;
     box-shadow: 0 0 0 2px rgba(247, 246, 246, 0.8);
@@ -72,7 +64,7 @@
     position: absolute;
     top: 140px;
     left: 90px;
-    font-size: 50px;
+    font-size: 45px;
     /* font-family:; */
     font-weight:bold;
     color: rgb(56, 55, 55);
@@ -81,20 +73,20 @@
   }
   #studentClass{
     position: absolute;
-    top: 270px;
+    top: 280px;
     left: 270px;
     font-size: 45px;
-    /* font-family: cursive; */
+    font-family: cursive;
     font-weight:bold;
     color: rgb(56, 55, 55);
      min-width: 600px;
   }
   #studentSection{
     position: absolute;
-    top: 270px;
+    top: 280px;
     left: 550px;
     font-size: 45px;
-    /* font-family: cursive; */
+    font-family: cursive;
     font-weight:bold;
     color: rgb(56, 55, 55);
      min-width: 600px;
@@ -104,7 +96,7 @@
     top: 500px;
     left: 80px;
     font-size: 50px;
-    /* font-family:cursive; */
+    font-family:cursive;
     font-weight:bold;
     color: rgb(56, 55, 55);
     text-transform: capitalize;
@@ -138,6 +130,7 @@
   color: #636262;
 }
 
+
 input{
    display: block;
    width: 100%;
@@ -157,6 +150,12 @@ input:focus{
   flex-direction: row;
   justify-content: space-between; /* Adjust as needed */
   align-items: flex-start; /* Adjust as needed */
+}
+.btn{
+    padding: 8px 10px;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0;
 }
    </style>
 
@@ -186,10 +185,14 @@ input:focus{
          </div>
           <div class="input-groups section-p1 section-m1">
             <!-- Inputs for dynamic values -->
-          <label for="inputUploadImage">
-            upload image
-          <input type="file" id="inputUploadImage" placeholder="upload image">
-          </label> <br>
+           <form>
+                <div class="form-group">
+                    <!-- <label for="fileInput">Select a File: </label>  -->
+                    <input id="fileInput" class="form-control" type="file">
+                </div>
+                <input class="btn" type="button" onclick="submitHandler()" value="Remove background">
+            </form><br>
+              <button class="btn btn-warning" onclick="downloadFile()">Download</button> <br>
             <button id="deleteButton"><i class="fa-solid fa-trash"></i></button>
             <button id="zoomInButton"><i class="fa fa-search-plus" aria-hidden="true"></i></i></button>
             <button id="zoomOutButton"><i class="fa fa-search-minus" aria-hidden="true"></i></button>
@@ -204,7 +207,6 @@ input:focus{
 
           <!-- Button to generate and download the name slip -->
           <button onclick="generateAndDownloadNameSlip()">Generate & Download Name Slip</button>
-         <br> <a class="btn" onclick="add()">add to cart</a>
           </div>
       </div>
     </section>
@@ -279,6 +281,67 @@ input:focus{
         <p>© 2023 by Dreamik AI. Created by Sanads Digital</p>
     </footer>
     <script>
+    //another.html oda codes
+    let imageURL;
+
+    function submitHandler() {
+        const fileInput = document.getElementById('fileInput');
+        const image = fileInput.files[0];
+
+        if (!image) {
+            console.error("No image selected");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('image_file', image);
+        formData.append('size', 'auto');
+
+        const apiKey = 'SSCzvfx3NTMt52wxoyxohVXv'; // Replace with your API key
+
+        fetch('https://api.remove.bg/v1.0/removebg', {
+            method: 'POST',
+            headers: {
+                'X-Api-Key': apiKey
+            },
+            body: formData
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Failed to remove background');
+            }
+            return response.blob();
+        })
+        .then(function(blob) {
+            const url = URL.createObjectURL(blob);
+            imageURL = url;
+            const uploadedImage = document.getElementById("uploadedImage");
+            uploadedImage.src = url;
+            // document.body.appendChild(img);
+        })
+        .catch(function(error) {
+            console.error('Error:', error);
+        });
+    }
+
+    function downloadFile() {
+        if (!imageURL) {
+            console.error("No image to download");
+            return;
+        }
+
+        var anchorElement = document.createElement('a');
+        anchorElement.href = imageURL;
+        anchorElement.download = 'no-bg.png';
+        document.body.appendChild(anchorElement);
+
+        anchorElement.click();
+
+        document.body.removeChild(anchorElement);
+    }
+
+
+
        document.addEventListener("DOMContentLoaded", function () {
   const uploadedImage = document.getElementById("uploadedImage");
   const deleteButton = document.getElementById("deleteButton");
@@ -320,29 +383,18 @@ deleteButton.addEventListener("click", function () {
 });
 
 
- // Function to generate and download the name slip
-function generateAndDownloadNameSlip() {
-  // Get input values
-  const studentName = document.getElementById('inputStudentName').value;
-  const studentClass = document.getElementById('inputStudentClass').value;
-  const studentSection = document.getElementById('inputStudentSection').value;
-  const schoolName = document.getElementById('inputSchoolName').value;
-  const uploadedImage = document.getElementById('inputUploadImage').files[0];
+  function generateAndDownloadNameSlip() {
+            const studentName = document.getElementById('inputStudentName').value;
+            const studentClass = document.getElementById('inputStudentClass').value;
+            const studentSection = document.getElementById('inputStudentSection').value;
+            const schoolName = document.getElementById('inputSchoolName').value;
 
-  // Create a FileReader object to read the uploaded image
-  const reader = new FileReader();
-  reader.onload = function(event) {
-    const uploadedImageSrc = event.target.result;
+            // Call updateNameSlip function to update the content
+            updateNameSlip(studentName, studentClass, studentSection, schoolName, imageURL);
 
-    // Update name slip content with dynamic values
-    updateNameSlip(studentName, studentClass, studentSection, schoolName, uploadedImageSrc);
-
-    // Download the name slip as an image
-    downloadNameSlip();
-  };
-  // Read the uploaded image as data URL
-  reader.readAsDataURL(uploadedImage);
-}
+            // Call downloadNameSlip function to download the generated name slip
+            downloadNameSlip();
+        }
 
 // Function to update the name slip content with dynamic text and image
 function updateNameSlip(studentName, studentClass, studentSection, schoolName, uploadedImageSrc) {
@@ -372,28 +424,17 @@ function downloadNameSlip() {
     document.body.removeChild(link);
   });
 }
-function add(){
-  window.location.href = '/addToCart1.html'; 
-}
-// After generating and downloading the image
-// sessionStorage.setItem('imageData', imageData); // Store the image data in sessionStorage
-// window.location.href = '/addToCart1.html'; // Redirect to the "Add to Cart" page
-// function downloadNameSlip() {
-//   // Capture the name slip container using html2canvas
-//   html2canvas(document.getElementById('nameSlipContainer')).then(canvas => {
-//     // Convert the canvas to a data URL
-//     const dataURL = canvas.toDataURL('image/png');
 
-//     // Redirect to the next page with the data URL as a query parameter
-//     window.location.href = '/addToCart1.html?image=' + encodeURIComponent(dataURL);
-//   });
+// function add(){
+//   window.location.href = '/addToCart1.html';
 // }
+
 // Get references to the input elements
 const inputStudentName = document.getElementById('inputStudentName');
 const inputStudentClass = document.getElementById('inputStudentClass');
 const inputStudentSection = document.getElementById('inputStudentSection');
 const inputSchoolName = document.getElementById('inputSchoolName');
-const inputUploadImage = document.getElementById('inputUploadImage');
+const fileInput = document.getElementById('fileInput');
 
 // Add event listeners to update text content dynamically
 inputStudentName.addEventListener('input', function() {
@@ -412,35 +453,38 @@ inputSchoolName.addEventListener('input', function() {
   document.getElementById('schoolName').textContent = inputSchoolName.value;
 });
 
-// Add event listener to reflect uploaded image
-inputUploadImage.addEventListener('change', function(event) {
-  const uploadedImage = event.target.files[0];
-  const reader = new FileReader();
 
-  reader.onload = function(event) {
-    const uploadedImageSrc = event.target.result;
-    document.getElementById('uploadedImage').src = uploadedImageSrc;
-  };
 
-  reader.readAsDataURL(uploadedImage);
-});
-// function generateAndPassNameSlip() {
-//   // Get input values and uploaded image
-//   const studentName = document.getElementById('inputStudentName').value;
-//   const studentClass = document.getElementById('inputStudentClass').value;
-//   const studentSection = document.getElementById('inputStudentSection').value;
-//   const schoolName = document.getElementById('inputSchoolName').value;
-//   const uploadedImage = document.getElementById('uploadedImage').src;
-  
-//   // Encode the image URL to include in the URL parameter
-//   const encodedImage = encodeURIComponent(uploadedImage);
+// // Add event listener to reflect uploaded image
+// fileInput.addEventListener('change', function(event) {
+//   const uploadedImage = event.target.files[0];
+//   const reader = new FileReader();
 
-//   // Construct the URL parameter string
-//   const queryParams = `?studentName=${studentName}&studentClass=${studentClass}&studentSection=${studentSection}&schoolName=${schoolName}&uploadedImage=${encodedImage}`;
+//   reader.onload = function(event) {
+//     const uploadedImageSrc = event.target.result;
+//     document.getElementById('uploadedImage').src = uploadedImageSrc;
 
-//   // Redirect to the next page with the URL parameter
-//   window.location.href = '/addToCart1.html' + queryParams;
-// }
+//   };
+
+//   reader.readAsDataURL(uploadedImage);
+
+// });
+ document.getElementById('fileInput').addEventListener('change', function(event) {
+            const uploadedImage = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const uploadedImageSrc = event.target.result;
+                document.getElementById('uploadedImage').src = uploadedImageSrc;
+                imageURL = uploadedImageSrc; // Store the uploaded image URL
+            };
+
+            reader.readAsDataURL(uploadedImage);
+        });
+
+
+
+
     </script>
 </body>
 </html>

@@ -206,7 +206,7 @@ a{
     background-color: rgb(51, 32, 126);
     border: none;
     outline: none;
-    padding: 15px 60px;
+    padding: 8px 12px;
     color: white;
     font-size: 20px;
     border-radius: 32px;
@@ -469,9 +469,9 @@ footer .col a h2{
 #prodetails .single-pro-details button{
   width: 200px;
   height: 47px;
-  padding: 5px 20px;
+  padding: 5px 12px;
   border-radius: 6px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 #prodetails .single-pro-details span{
     font-size: 20px;
@@ -484,7 +484,7 @@ footer .col a h2{
     background-color: rgb(51, 32, 126);
     border: none;
     outline: none;
-    padding: 15px 30px 15px 30px;
+    padding: 10px 15px;
     color: white;
     font-size: 16px;
     border-radius: 32px;
