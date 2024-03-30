@@ -27,11 +27,20 @@
   font-weight: 600;
   font-style: normal;
 }
-
+.watermark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensure the watermark covers the entire container */
+    height: 100%;
+    opacity: 0.5; /* Adjust opacity as needed */
+    z-index: 2; /* Position the watermark above the name-slip */
+    pointer-events: none; /* Ensure the watermark doesn't interfere with mouse events */
+}
   #uploadedImage {
       position: absolute;
-      top: 160px;
-      left: 100px;
+      top: 130px;
+      left: 30px;
       width: 250px;
       height: 250px;
       border-radius: 5px;
@@ -46,14 +55,14 @@
   width: 1080px; /* Adjust width to match input-groups */
   height: 600px;
   object-fit: contain;
-  padding: 20px;
-  margin: 50px;
+  /* padding: 20px;
+  margin: 50px; */
   }
-  .input-groups{
+ .input-groups{
     width: 30%;
-    margin-top: 60px;
-    padding: 15px;
-    height: 550px;
+    /* margin-top: 60px; */
+    padding: 10px;
+    height: 570px;
     background-color: #fff;
     border: 1px dashed;
     box-shadow: 0 0 0 2px rgba(247, 246, 246, 0.8);
@@ -62,32 +71,12 @@
     align-items: center; /* Align items to center */
   }
   .input-groups button{
-    margin: 5px;
+    margin-top: 5px;
   }
+
   #nameSlipContainer{
     display: flex;
     align-items: center;
-  }
-  #studentName{
-    position: absolute;
-    top: 80px;
-    left: 370px;
-    font-size: 45px;
-    /* font-family:; */
-    font-weight:bold;
-    color: black;
-    min-width: 400px;
-    text-transform: capitalize;
-  }
-  #studentClass{
-    position: absolute;
-    top: 170px;
-    left: 480px;
-    font-size: 45px;
-    /* font-family: cursive; */
-    font-weight:bold;
-    color: black;
-     min-width: 600px;
   }
   #studentSection{
     position: absolute;
@@ -99,17 +88,43 @@
     color: black;
      min-width: 600px;
   }
-  .btn{
-    padding: 8px 10px;
-    display: inline-block;
-    font-size: 16px;
-    margin: 0;
-}
+
+ #studentName{
+    position: absolute;
+    top: 45px;
+    left: 330px;
+    font-size: 40px;
+    /* font-family:; */
+    font-weight:bold;
+    color: black;
+    min-width: 400px;
+    text-transform: capitalize;
+  }
+  #studentClass{
+    position: absolute;
+    top: 125px;
+    left: 480px;
+    font-size: 50px;
+    /* font-family: cursive; */
+    font-weight:bold;
+    color: black;
+     min-width: 600px;
+  }
+  #studentSection{
+    position: absolute;
+     top: 125px;
+    left: 850px;
+    font-size: 50px;
+    /* font-family: cursive; */
+    font-weight:bold;
+    color: black;
+     min-width: 600px;
+  }
   #schoolName{
     position: absolute;
-    top: 360px;
-    left: 560px;
-    font-size: 45px;
+    top: 315px;
+    left: 540px;
+    font-size: 40px;
     /* font-family:cursive; */
     font-weight:bold;
     color: black;
@@ -121,27 +136,34 @@
     display: none;
   }
   label{
-    margin-bottom: 30px;
+    margin-bottom: 5px;
     border: 1px dashed #a19d9d;
     box-shadow: 0 0 0 2px rgba(247, 246, 246, 0.8);
     text-align: center;
-    color:#a8a4a4;
-    padding: 10px;
+    font-size: 12px;
+    color:gray;
+    padding: 5px;
     display: block;
-    margin-top: 10px;
+    margin-top: 5px;
   }
   button {
   background-color: #ece9e9;
   border: none;
-  padding: 8px 10px;
+  padding: 4px 8px;
   margin: 5px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   border-radius: 5px;
   color: #636262;
+}
+.btn{
+    padding: 4px 8px;
+    display: inline;
+    font-size: 12px;
+    margin: 0;
 }
 
 input{
@@ -163,6 +185,58 @@ input:focus{
   flex-direction: row;
   justify-content: space-between; /* Adjust as needed */
   align-items: flex-start; /* Adjust as needed */
+}
+/* CSS for color picker and size picker */
+#textColorPicker {
+    margin-top: 10px;
+    height: 30px;
+    display: block;
+    height: 30px; /* Adjust the height as needed */
+    border-radius: 5px; /* Optional: Add border radius for rounded corners */
+    padding: 5px; /* Optional: Add padding for spacing inside the box */
+    box-sizing: border-box; /* Include padding and border in the input's total width and height */
+}
+
+
+#textSizePicker {
+  margin-top: 10px;
+}
+
+/* CSS for input fields */
+
+.input-groups input[type="color"],
+.input-groups input[type="range"] {
+  background-color: #fff;
+  border: 0;
+  box-shadow: 0 0 0 2px rgba(220, 217, 217, 0.8);
+}
+
+
+.input-groups input[type="text"]:focus,
+.input-groups input[type="color"]:focus,
+.input-groups input[type="range"]:focus {
+  outline: none;
+}
+#fontStylePicker {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px 3px;
+  background-color: #fff;
+  border: 1px solid #878383; /* Example border style */
+  border-radius: 5px; /* Example border radius */
+}
+#fontStylePicker,#textColorPicker{
+  width: 20%;
+  display: inline;
+}
+#textSizePicker{
+  width: 50%;
+  display: inline;
+}
+.formatting-bar{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
    </style>
 
@@ -189,6 +263,7 @@ input:focus{
             <!-- Image placeholder -->
             <img id="uploadedImage">
           </div>
+          <img class="watermark" src="./image/DreamikAIComics-Label-Watermark-Mask-Rectangle-v1-HD(1080x1920 px).png" alt="Watermark Image">
          </div>
           <div class="input-groups section-p1 section-m1">
             <!-- Inputs for dynamic values -->
@@ -203,10 +278,39 @@ input:focus{
             <button id="deleteButton"><i class="fa-solid fa-trash"></i></button>
             <button id="zoomInButton"><i class="fa fa-search-plus" aria-hidden="true"></i></i></button>
             <button id="zoomOutButton"><i class="fa fa-search-minus" aria-hidden="true"></i></button>
+              <button onclick="move('up')"><i class="fa-solid fa-arrow-up"></i></button>
+            <button onclick="move('down')"><i class="fa-solid fa-arrow-down"></i></button>
+            <button onclick="move('left')"><i class="fa-solid fa-arrow-left"></i></button>
+            <button onclick="move('right')"><i class="fa-solid fa-arrow-right"></i></button>
             <button id="rotateLeftButton"><i class="fa-solid fa-rotate-left"></i></button>
             <button id="rotateRightButton"><i class="fa-solid fa-rotate-right"></i></button>
             <button id="flipHorizontalButton"><i class="fas fa-arrows-alt-h"></i></button>
             <button id="flipVerticalButton"><i class="fas fa-arrows-alt-v"></i></button>
+   <div class="formatting-bar">
+          <input type="color" id="textColorPicker" value="#000000"> <!-- Color palette picker -->
+          <input type="range" id="textSizePicker" min="10" max="60" value="30"> <!-- Font size picker -->
+             <select id="fontStylePicker">
+               <option value="Arial">Arial</option>
+  <option value="Helvetica">Helvetica</option>
+  <option value="Times New Roman">Times New Roman</option>
+  <option value="Times">Times</option>
+  <option value="Courier New">Courier New</option>
+  <option value="Courier">Courier</option>
+  <option value="Verdana">Verdana</option>
+  <option value="Georgia">Georgia</option>
+  <option value="Palatino">Palatino</option>
+  <option value="Garamond">Garamond</option>
+  <option value="Bookman">Bookman</option>
+  <option value="Comic Sans MS">Comic Sans MS</option>
+  <option value="Trebuchet MS">Trebuchet MS</option>
+  <option value="Arial Black">Arial Black</option>
+  <option value="Impact">Impact</option>
+  <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+  <option value="Tahoma">Tahoma</option>
+  <option value="Geneva">Geneva</option>
+  <option value="Lucida Console">Lucida Console</option>
+              </select>
+              </div>
           <input type="text" id="inputStudentName" placeholder="Enter student name">
           <input type="text" id="inputStudentClass" placeholder="Enter student class">
           <input type="text" id="inputStudentSection" placeholder="Enter student section">
@@ -489,6 +593,62 @@ inputSchoolName.addEventListener('input', function() {
             reader.readAsDataURL(uploadedImage);
         });
 
+// Get references to the color picker and size picker
+const textColorPicker = document.getElementById('textColorPicker');
+const textSizePicker = document.getElementById('textSizePicker');
+
+// Add event listeners to update text color and size dynamically
+textColorPicker.addEventListener('input', function() {
+  const textColor = textColorPicker.value;
+  // Set the color of all input fields to the selected color
+  document.querySelectorAll('.hurricane-regular').forEach(input => {
+    input.style.color = textColor;
+  });
+});
+
+textSizePicker.addEventListener('input', function() {
+  const textSize = textSizePicker.value + 'px';
+  // Set the font size of all input fields to the selected size
+  document.querySelectorAll('.hurricane-regular').forEach(input => {
+    input.style.fontSize = textSize;
+  });
+});
+// Get reference to the font style picker
+const fontStylePicker = document.getElementById('fontStylePicker');
+
+// Add event listener to update font style dynamically
+fontStylePicker.addEventListener('change', function() {
+  const selectedFontStyle = fontStylePicker.value;
+  console.log('Font style changed to:', selectedFontStyle); // Log message
+  // Set the font family of all input fields to the selected font style
+  document.querySelectorAll('.hurricane-regular').forEach(input => {
+    input.style.fontFamily = selectedFontStyle;
+  });
+});
+
+function move(direction) {
+    var img = document.getElementById("uploadedImage");
+    var currentTop = img.offsetTop;
+    var currentLeft = img.offsetLeft;
+    var step = 10; // Adjust the step size as needed
+
+    switch (direction) {
+        case 'up':
+            img.style.top = (currentTop - step) + "px";
+            break;
+        case 'down':
+            img.style.top = (currentTop + step) + "px";
+            break;
+        case 'left':
+            img.style.left = (currentLeft - step) + "px";
+            break;
+        case 'right':
+            img.style.left = (currentLeft + step) + "px";
+            break;
+        default:
+            break;
+    }
+}
 
 
 
